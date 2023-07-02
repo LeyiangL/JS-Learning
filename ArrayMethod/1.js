@@ -51,7 +51,7 @@
 // }
 
 
-var arr = [1, , 3];
+// var arr = [1, , 3];
 // for (var i = 0; i < arr.length; i++) {
 //     if (i == 1) {
 //         continue;
@@ -166,14 +166,26 @@ var arr = [1, , 3];
 //     // flattened 的值是 [0, 1, 2, 3, 4, 5]
 
 
-const names = ["Alice", "Bob", "Tiff", "Bruce", "Alice"];
+// const names = ["Alice", "Bob", "Tiff", "Bruce", "Alice"];
 
-const countedNames = names.reduce((allNames, name) => {
-    const currCount = allNames[name] ?? 0;
-    return {
-        ...allNames,
-        [name]: currCount + 1,
-    };
-}, {});
-// countedNames 的值是：
-// { 'Alice': 2, 'Bob': 1, 'Tiff': 1, 'Bruce': 1 }
+// const countedNames = names.reduce((allNames, name) => {
+//     const currCount = allNames[name] ?? 0;
+//     return {
+//         ...allNames,
+//         [name]: currCount + 1,
+//     };
+// }, {});
+// // countedNames 的值是：
+// // { 'Alice': 2, 'Bob': 1, 'Tiff': 1, 'Bruce': 1 }
+// console.log(countedNames);
+
+
+// const flattened = [[0, [1]], [2, [3]], [4, [5]]].reduce(
+//     function (a, b) {
+//         return [...a, ...b];
+//     }, []);
+// const res = flattened.reduce(
+//     function (a, b) {
+//         return a.concat(b);
+//     }, []);
+// console.log(res); // (6) [0, 1, 2, 3, 4, 5]

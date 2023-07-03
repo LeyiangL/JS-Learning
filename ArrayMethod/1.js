@@ -189,3 +189,69 @@
 //         return a.concat(b);
 //     }, []);
 // console.log(res); // (6) [0, 1, 2, 3, 4, 5]
+
+
+// function* generator() {
+//     yield '周一：JS';
+//     yield '周二：JAVA';
+//     yield '周三：Vue';
+//     yield '周四：React';
+//     return '周五：SQL';
+// }
+// const iterator = generator();
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+
+
+// const arr = ['周一：JS', '周二：JAVA', '周三：Vue', '周四：React']
+// function* generator(arr) {
+//     for (var i = 0; i < arr.length; i++) {
+//         yield arr[i];
+//     }
+//     return '周五：SQL';
+// }
+// const iterator = generator(arr);
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+
+
+// function generator(arr) {
+//     var nextIndex = 0;
+//     return {
+//         next: function () {
+//             return nextIndex < arr.length ?
+//                 { value: arr[nextIndex++], done: false } :
+//                 { value: arr[nextIndex++], done: true };
+//         }
+//     }
+// }
+// var iterator = generator([1, 2, 3, 4, 5]);
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+
+
+// const arr = ['周一：JS', '周二：JAVA', '周三：Vue', '周四：React']
+// function* generator(arr) {
+//     for (var i = 0; i < arr.length; i++) {
+//         yield arr[i];
+//     }
+//     return '周五：SQL';
+// }
+// const iterator = generator(arr);
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next()); // {value: undefined, done: true}
+// 将每一次遍历进行拆分

@@ -255,3 +255,125 @@
 // console.log(iterator.next());
 // console.log(iterator.next()); // {value: undefined, done: true}
 // 将每一次遍历进行拆分
+
+
+// const arr = [1, 2, 3, 4, 5];
+// const _ = arr.entries();
+// console.log(_); // Array Iterator {} 数组 迭代器 对象
+
+
+// const arr = [1, 2, 3, 4, 5];
+// const iterator = arr.entries();
+
+// console.log(iterator); // Array Iterator {} 数组 迭代器 对象
+// console.log(iterator.next()); // {value: Array(2), done: false}
+// console.log(iterator.next()); // {value: Array(2), done: false}
+// console.log(iterator.next()); // {value: Array(2), done: false}
+// console.log(iterator.next()); // {value: Array(2), done: false}
+// console.log(iterator.next()); // {value: Array(2), done: false}
+// console.log(iterator.next()); // {value: Array(2), done: false}
+// // {value: [index, item], done: ?}
+
+
+// const arr = [1, 2, 3, 4, 5];
+// const iterator = arr.entries();
+// // var o = {
+// //     a: 1,
+// //     b: 2,
+// //     c: 3
+// // }
+// for (let collection of iterator) {
+//     // console.log(collection);
+//     // (2) [0, 1]
+//     // (2) [1, 2]
+//     // (2) [2, 3]
+//     // (2) [3, 4]
+//     // (2) [4, 5]
+//     const [i, v] = collection;
+//     console.log(i, v);
+// }
+
+// 类数组
+// var o = {
+//     a: 1,
+//     b: 2,
+//     c: 3,
+//     length: 3
+// }
+
+// Object.prototype[Symbol.iterator]= Array.prototype[Symbol.iterator];
+// var o = {
+//     0: 1,
+//     1: 2,
+//     2: 3,
+//     length: 3,
+// }
+// for (let v of o) {
+//     console.log(v); // 1 2 3
+// }
+
+
+// var o = {
+//     0: 1,
+//     1: 2,
+//     2: 3,
+//     length: 3
+// }
+// for (let v of Array.from(o)) {
+//     console.log(v); // 1 2 3
+// }
+
+
+// const arr = [1, 2, 3, 4, 5];
+// const it = arr.entries();
+// var newArr = [];
+// for (var i = 0; i < arr.length + 1; i++) {
+//     var item = it.next();
+//     console.log(item);
+//     !item.done && (newArr[i] = item.value);
+// }
+// console.log(newArr);
+
+
+// const newArr = [
+//     [56, 23],
+//     [56, 34, 100, 1],
+//     [123, 234, 12]
+// ]
+// function sortArr(arr) {
+//     var _it = arr.entries(), // _it 为 Array Iterator {}
+//         _doNext = true;
+//     while (_doNext) {
+//         var _r = _it.next();
+//         if (!_r.done) { // _r.done == false
+//             _r.value[1].sort((a, b) => a - b);
+//             _doNext = true;
+//         } else {
+//             _doNext = false;
+//         }
+//     }
+//     return arr;
+// }
+// console.log(sortArr(newArr));
+
+
+const newArr = [
+    [56, 23],
+    [56, 34, 100, 1],
+    [123, 234, 12]
+]
+function sortArr(arr) {
+    var _it = arr.entries(),
+        _doNext = true;
+    while (_doNext) {
+        var _r = _it.next();
+        if (!_r.done) {
+            _r.value[1].sort((a, b) => a - b);
+            _doNext = true;
+        } else {
+            _doNext = false;
+        }
+    }
+    return arr;
+}
+console.log(sortArr(newArr));

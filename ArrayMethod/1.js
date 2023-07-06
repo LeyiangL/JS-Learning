@@ -357,23 +357,90 @@
 // console.log(sortArr(newArr));
 
 
-const newArr = [
-    [56, 23],
-    [56, 34, 100, 1],
-    [123, 234, 12]
-]
-function sortArr(arr) {
-    var _it = arr.entries(),
-        _doNext = true;
-    while (_doNext) {
-        var _r = _it.next();
-        if (!_r.done) {
-            _r.value[1].sort((a, b) => a - b);
-            _doNext = true;
-        } else {
-            _doNext = false;
-        }
-    }
-    return arr;
-}
-console.log(sortArr(newArr));
+// const newArr = [
+//     [56, 23],
+//     [56, 34, 100, 1],
+//     [123, 234, 12]
+// ]
+// function sortArr(arr) {
+//     var _it = arr.entries(),
+//         _doNext = true;
+//     while (_doNext) {
+//         var _r = _it.next();
+//         if (!_r.done) {
+//             _r.value[1].sort((a, b) => a - b);
+//             _doNext = true;
+//         } else {
+//             _doNext = false;
+//         }
+//     }
+//     return arr;
+// }
+// console.log(sortArr(newArr));
+
+
+// const arr = [1, 2, 3, 4, 5];
+// const newArr = arr.fill('a', 1,);
+// console.log(newArr); // (5) [1, 'a', 'a', 'a', 'a']
+
+
+// const newObj = Array.prototype.fill.call({ length: 3 }, 4);
+// console.log(newObj); // {0: 4, 1: 4, 2: 4, length: 3}
+
+
+// function makeArrayLike(arr) {
+//     var arrLike = {
+//         length: arr.length,
+//         push: [].push,
+//         splice: [].splice,
+//     };
+//     arr.forEach(function (item, index) {
+//         [].fill.call(arrLike, item, index, index + 1);
+//     });
+//     return arrLike;
+// }
+// const newObj = makeArrayLike([
+//     {
+//         id: 1,
+//         name: '张三'
+//     },
+//     {
+//         id: 2,
+//         name: '赵四'
+//     },
+//     {
+//         id: 3,
+//         name: '王五'
+//     }
+// ]);
+// console.log(newObj); // Object(5) ['a', 'b', 'c', 'd', 'e', push: ƒ, splice: ƒ]
+
+
+// Array.prototype.myFill = function () {
+//     var value = arguments[0] || undefined,
+//         start = arguments[1] >> 0,
+//         end = arguments[2]; // >> 0 保证为数字
+//     if (this == null) {
+//         throw new TypeError('This is null or not defined')
+//     }
+//     var obj = Object(this),
+//         len = obj.length >>> 0; // >>> 0 保证为正整数
+//     start = start < 0 ?
+//         Math.max(len + start, 0) :
+//         Math.min(start, len);
+//     end = end === undefined ? len : end >> 0;
+//     end = end < 0 ?
+//         Math.max(len + end, 0) :
+//         Math.min(end, len);
+//     while (start < end) {
+//         obj[start] = value;
+//         start++;
+//     }
+//     return obj;
+// }
+
+// const arr = [1, 2, 3, 4, 5];
+// const newArr = arr.myFill('a', 2, 4);
+// console.log(newArr); // (5) [1, 2, 'a', 'a', 5]
+
+

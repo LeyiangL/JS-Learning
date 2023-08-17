@@ -1487,3 +1487,311 @@
 // console.log(res); // (4) ['LiHua', 'MIKE', 'tony', 'Zhangsan']
 
 
+// var arr = [1, 1, 2, 6, 3, 5, 0, 3, 6, 8, 9, 4, 4, 2, 0, 9, 5, 2, 7, 4, 2, 3, 4, 6];
+
+// // for 循环
+// function uniqueArr(array) {
+//     var _arr = [],
+//         isRepeat = false;
+
+//     for (var i = 0; i < array.length; i++) {
+//         isRepeat = false;
+//         for (var j = i + 1; j < array.length; j++) {
+//             if (array[j] === array[i]) {
+//                 isRepeat = true;
+//                 break;
+//             }
+//         }
+//         if (!isRepeat) {
+//             _arr.push(array[i]);
+//         }
+//     }
+
+//     return _arr;
+// }
+
+// console.log(uniqueArr(arr).sort()); // (10) [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
+// var arr = [1, 1, 2, 6, 3, 5, 0, 3, 6, 8, 9, 4, 4, 2, 0, 9, 5, 2, 7, 4, 2, 3, 4, 6];
+
+// // for 循环
+// function uniqueArr(array) {
+//     return array.filter(function (item, index) {
+//         // 如果当前项的indexOf(item)不等于当前遍历出的index，证明元素item不可能只出现一次
+//         // 比如：item = 1, index = 1, 但是 array.indexOf(1) = 0
+//         return array.indexOf(item) === index;
+//     })
+// }
+
+// console.log(uniqueArr(arr).sort()); // (10) [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
+// var arr = [1, 1, 2, 6, 3, 5, 0, 3, 6, 8, 9, 4, 4, 2, 0, 9, 5, 2, 7, 4, 2, 3, 4, 6];
+
+// // forEach
+// function uniqueArr(array) {
+//     var _arr = [];
+
+//     array.forEach(item => {
+//         if (_arr.indexOf(item) === -1) {
+//             _arr.push(item);
+//         }
+//     });
+
+//     return _arr;
+// }
+
+// console.log(uniqueArr(arr).sort()); // (10) [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
+// var arr = [1, 1, 2, 6, 3, 5, 0, 3, 6, 8, 9, 4, 4, 2, 0, 9, 5, 2, 7, 4, 2, 3, 4, 6];
+
+// // includes
+// function uniqueArr(array) {
+//     var _arr = [];
+
+//     array.forEach(item => {
+//         if (!_arr.includes(item)) {
+//             _arr.push(item)
+//         }
+//     });
+
+//     return _arr;
+// }
+
+// console.log(uniqueArr(arr).sort()); // (10) [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
+// var arr = [1, 1, 2, 6, 3, 5, 0, 3, 6, 8, 9, 4, 4, 2, 0, 9, 5, 2, 7, 4, 2, 3, 4, 6];
+
+// // sort + reduce
+// function uniqueArr(array) {
+//     return array.sort().reduce(function (prev, item) {
+//         if (prev.length === 0 || prev[prev.length - 1] !== item) {
+//             prev.push(item);
+//         }
+//         return prev;
+//     }, []);
+// }
+
+// console.log(uniqueArr(arr).sort()); // (10) [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
+var arr = [1, 1, 2, 6, 3, 5, 0, 3, 6, 8, 9, 4, 4, 2, 0, 9, 5, 2, 7, 4, 2, 3, 4, 6];
+
+// // map
+// function uniqueArr(array) {
+//     var _arr = [],
+//         _temp = new Map();
+
+//     for (var i = 0; i < array.length; i++) {
+//         if (!_temp.get(array[i])) {
+//             _temp.set(array[i], 1);
+//             _arr.push(array[i]);
+//         }
+//     }
+
+//     return _arr;
+// }
+
+// console.log(uniqueArr(arr).sort()); // (10) [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+// var arr = [1, 1, 2, 6, 3, 5, 0, 3, 6, 8, 9, 4, 4, 2, 0, 9, 5, 2, 7, 4, 2, 3, 4, 6];
+
+// // Set
+// function uniqueArr(array) {
+
+//     // Array.from 类数组转为数组
+//     return Array.from(new Set(array));
+// }
+
+// console.log(uniqueArr(arr).sort()); // (10) [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
+// var arr = [1, 2, 3, 4, ['a', 'b', 'c'], 5, [[['d', ['e', 'f']], {}, null, undefined, [null, {}], 6, 7], {}, null, 'g', [[[[[8, {}]], null]]]]];
+
+// function flatten1(arr) {
+//     var _arr = arr || [], // 初始数组
+//         finalArr = [], // 装载遍历过程中元素的数组
+//         len = arr.length, // 原数组长度
+//         item; // 循环的每一项
+
+//     for (var i = 0; i < len; i++) {
+//         item = _arr[i];
+//         // 是数组的情况
+//         if (_isArr(item)) {
+//             finalArr = finalArr.concat(flatten1(item));
+//         } else {
+//             finalArr.push(item);
+//         }
+//     }
+
+//     return finalArr;
+
+//     function _isArr(obj) {
+//         return {}.toString.call(obj) === '[object Array]';
+//     }
+// }
+
+// console.log(flatten1(arr)); // (24) [1, 2, 3, 4, 'a', 'b', 'c', 5, 'd', 'e', 'f', {…}, null, undefined, null, {…}, 6, 7, {…}, null, 'g', 8, {…}, null]
+
+
+// var arr = [1, 2, 3, 4, ['a', 'b', 'c'], 5, [[['d', ['e', 'f']], {}, null, undefined, [null, {}], 6, 7], {}, null, 'g', [[[[[8, {}]], null]]]]];
+
+// Array.prototype.flatten2 = function () {
+//     var _arr = this,
+//         toStr = {}.toString;
+
+//     if (toStr.call(_arr) !== '[object Array]') {
+//         throw new TypeError('只有数组类型的数据可以使用flatten2方法');
+//     }
+
+//     var finalArr = [];
+
+//     _arr.forEach(function (elem) {
+//         toStr.call(elem) === '[object Array]'
+//             ? finalArr = finalArr.concat(elem.flatten2())
+//             : finalArr.push(elem);
+//     });
+
+//     return finalArr;
+// }
+
+// console.log(arr.flatten2());
+
+
+// var arr = [1, 2, 3, 4, ['a', 'b', 'c'], 5, [[['d', ['e', 'f']], {}, null, undefined, [null, {}], 6, 7], {}, null, 'g', [[[[[8, {}]], null]]]]];
+
+// Array.prototype.flatten3 = function () {
+//     var _arr = this,
+//         toStr = {}.toString;
+
+//     if (toStr.call(_arr) !== '[object Array]') {
+//         throw new TypeError('只有数组类型的数据可以使用flatten3方法');
+//     }
+
+//     return _arr.reduce(function (prev, elem) {
+//         return prev.concat(
+//             toStr.call(elem) === '[object Array]'
+//                 ? elem.flatten3()
+//                 : elem)
+//     }, []);
+// }
+
+// console.log(arr.flatten3());
+
+
+// var arr = [1, 2, 3, 4, ['a', 'b', 'c'], 5, [[['d', ['e', 'f']], {}, null, undefined, [null, {}], 6, 7], {}, null, 'g', [[[[[8, {}]], null]]]]];
+
+// const flatten4 = arr =>
+//     arr.reduce(
+//         (prev, elem) =>
+//             prev.concat(
+//                 {}.toString.call(elem) === '[object Array]'
+//                     ? flatten4(elem)
+//                     : elem
+//             ),
+//         []);
+
+// console.log(flatten4(arr));
+
+
+// var arr = [[1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14]]]], 10];
+
+// // 定义一个函数，用来实现数组扁平化
+// function flatten(arr) {
+//     var _arr = arr || [],  // 如果arr为空，设置默认值为空数组
+//         finalArr = [],    // 存储扁平化后的结果
+//         len = _arr.length,  // 数组长度
+//         item,   // 当前元素
+//         toStr = {}.toString;  // 获取toString方法的引用
+
+//     for (var i = 0; i < len; i++) {
+//         item = _arr[i];
+//         if (_isArr(item)) {   // 判断当前元素是否是数组
+//             finalArr = finalArr.concat(flatten(item));  // 如果是数组，递归调用flatten函数进行扁平化
+//         } else {
+//             finalArr.push(item);  // 如果不是数组，直接将元素添加到finalArr中
+//         }
+//     }
+
+//     return finalArr;  // 返回扁平化后的结果
+
+//     // 判断当前元素是否是数组的辅助函数
+//     function _isArr(item) {
+//         return toStr.call(item) === '[object Array]';  // 使用toString方法判断当前元素的类型是不是数组
+//     }
+// }
+
+// console.log(flatten(arr)); // (17) [1, 2, 2, 3, 4, 5, 5, 6, 7, 8, 9, 11, 12, 12, 13, 14, 10]
+
+
+// var arr = [[1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14]]]], 10];
+
+// Array.prototype.flatten = function () {
+//     var _arr = this,
+//         finalArr = [],
+//         toStr = {}.toString;
+
+//     if (toStr.call(_arr) !== '[object Array]') {
+//         throw new Error('只有数组才能调用flatten方法');
+//     }
+
+//     _arr.forEach(function (item) {
+//         toStr.call(item) === '[object Array]'
+//             ? finalArr = finalArr.concat(item.flatten())
+//             : finalArr.push(item);
+//     });
+
+//     return finalArr;
+// }
+
+// console.log(arr.flatten());
+
+
+// // 定义一个数组 arr
+// var arr = [[1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14]]]], 10];
+
+// Array.prototype.flatten = function () {
+//     var _arr = this,
+//         toStr = {}.toString;
+
+//     return _arr.reduce(function (prev, item) {
+//         return prev.concat(
+//             toStr.call(item) === '[object Array]'
+//                 ? item.flatten()
+//                 : item
+//         )
+//     }, []);
+// }
+
+// console.log(arr.flatten());
+
+
+// var arr = [[1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14]]]], 10];
+
+// // 定义一个箭头函数 flatten，用于将多维数组扁平化
+// const flatten = arr => {
+//     return arr.reduce((prev, item) => {
+//         // 判断 item 是否为数组，如果是数组则递归调用 flatten 函数，否则直接将 item 添加到 prev 中
+//         return prev.concat(
+//             {}.toString.call(item) === '[object Array]'
+//                 ? flatten(item)
+//                 : item
+//         );
+//     }, []);
+// }
+
+// // 调用 flatten 函数并打印结果
+// console.log(flatten(arr));
+
+
+// var arr = [[1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14]]]], 10];
+// console.log(Array.from(new Set(arr.flat(Infinity))));
+
+// var arr = [[1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14]]]], 10];
+
+// console.log(Array.from(new Set(arr.flat(Infinity))).sort((a, b) => a - b)); // (14) [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+
+

@@ -1578,7 +1578,7 @@
 // console.log(uniqueArr(arr).sort()); // (10) [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 
-var arr = [1, 1, 2, 6, 3, 5, 0, 3, 6, 8, 9, 4, 4, 2, 0, 9, 5, 2, 7, 4, 2, 3, 4, 6];
+// var arr = [1, 1, 2, 6, 3, 5, 0, 3, 6, 8, 9, 4, 4, 2, 0, 9, 5, 2, 7, 4, 2, 3, 4, 6];
 
 // // map
 // function uniqueArr(array) {
@@ -1795,3 +1795,955 @@ var arr = [1, 1, 2, 6, 3, 5, 0, 3, 6, 8, 9, 4, 4, 2, 0, 9, 5, 2, 7, 4, 2, 3, 4, 
 // console.log(Array.from(new Set(arr.flat(Infinity))).sort((a, b) => a - b)); // (14) [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 
 
+
+// 闭包
+// function test(a, b, type) {
+//     var c = 3;
+//     function add() {
+//         console.log(a + b);
+//     }
+//     function minus() {
+//         console.log(a - b);
+//     }
+//     switch (type) {
+//         case 'PLUS':
+//             add();
+//             break;
+//         case 'MIUNS':
+//             minus();
+//             break;
+//         default:
+//             break;
+//     }
+// }
+// test(1, 2, 'PLUS'); // 3
+
+
+// // 函数是可以互相嵌套使用的
+// var a = 1;
+// function test1() { // 形成闭包
+//     console.log(a);
+//     var b = 2;
+//     function test2() { // 函数 test2 所形成的闭包是针对 test1 函数的
+//     }
+//     debugger
+//     test2();
+// }
+// test1();
+
+
+// var a = 1;
+// function test1() {
+//     console.log(a);
+//     var b = 2;
+//     function test3() { }
+//     function test2() {
+//         console.log(b);
+//         test3();
+//     }
+//     debugger
+//     test2();
+// }
+// test1();
+
+
+// function test(initialValue) {
+//     let num = initialValue;
+
+//     function changeNum(value) {
+//         num += value;
+//     }
+
+//     function add(value) {
+//         changeNum(value);
+//     }
+
+//     function minus(value) {
+//         changeNum(-value);
+//     }
+
+//     function value() {
+//         return num;
+//     }
+
+//     return {
+//         add,
+//         minus,
+//         value,
+//     }
+// }
+// const t = test(100); // 赋初值
+// t.add(8); // 改变值
+// console.log(t.value()); // 获取值
+
+
+// function test() {
+//     function test2() { } // 闭包
+
+//     return test2;
+// }
+// const t = test(); // 返回test2引用
+
+
+// 柯里化函数编写
+// function test() {
+//     return function test1() {
+//         return function test2() {
+//             return function test3() {
+//             }
+//         }
+//     }
+// }
+// const t0 = test();
+// const t1 = t0();
+// const t2 = t1();
+
+
+// // 获取 id 为 "textInput" 的元素
+// const oInput = document.querySelector('#textInput');
+// // 给 oInput 元素添加 input 事件监听器，当 input 内容发生变化时触发
+// // 事件处理函数为 throttle(handler, 800)，即在 800 毫秒内只执行一次 handler
+// oInput.addEventListener('input', throttle(handler, 800), false);
+
+// // input 事件处理函数
+// function handler() {
+//     // 在事件处理函数中，this 指向被绑定的元素，即 oInput，输出当前输入框的值
+//     console.log(this.value);
+// }
+
+// // 节流函数，限制 handler 函数在一定时间间隔内只执行一次
+// // 参数：handler - 要节流的函数，delay - 延迟时间
+// function throttle(handler, delay) {
+//     // 函数内部声明的局部变量均为私有变量
+//     // 声明一个局部变量 _delay，用于存储延迟时间，默认为 1000 毫秒
+//     const _delay = delay || 1000;
+//     // 声明一个局部变量 _initalTime，用于存储初始时间，初始为当前时间
+//     let _initialTime = new Date().getTime();
+
+//     // 返回一个新的事件处理函数
+//     return function (args) { // 闭包函数可以对外部函数 handler 进行二次封装，以达到按条件进行执行的目的
+//         // 获取当前时间
+//         const currentTime = new Date().getTime();
+//         // 存储当前上下文
+//         const ctx = this;
+
+//         // 如果当前时间与初始时间的差值大于等于延迟时间
+//         if (currentTime - _initialTime >= _delay) {
+//             // 调用 handler 函数，并传入当前上下文和参数
+//             handler.apply(ctx, args);
+//             // 更新初始时间为当前时间
+//             _initialTime = currentTime;
+//         }
+//     }
+// }
+
+
+// function add(a, b) {
+//     return console.log(a + b);;
+// }
+// function minus(a, b) {
+//     return console.log(a - b);;
+// }
+
+// var a = 101;
+// var b = 99;
+
+// if (a > 100 && b > 100) {
+//     add(a, b);
+// } else {
+//     minus(a, b);
+// }
+
+
+// function compute(methods) {
+//     return function (a, b) {
+//         if (a > 100 && b < 100) {
+//             return methods.add(a, b);
+//         } else {
+//             return methods.minus(a, b);
+//         }
+//     }
+// }
+
+// var a = 101;
+// var b = 99;
+// const c = compute({
+//     add(a, b) {
+//         return a + b;
+//     },
+//     minus(a, b) {
+//         return a - b;
+//     },
+// })
+
+// console.log(c(a, b));
+
+
+// const oLi = document.querySelectorAll('li');
+// /**
+//  * for 执行的流程是什么
+//  * 
+//  * 1. var i   i = 0
+//  * 2. 0 < 3
+//  *    符合 ：1. body（ oLi[i].addEventListener('click', function () { console.log(i); }, false); ）
+//  *    不符合：停止
+//  * 3. i = i++ = 1
+//  * 4. 1 < 3    
+//  *    符合 ：1. body（ oLi[i].addEventListener('click', function () { console.log(i); }, false); ）
+//  *    不符合：停止
+//  * 5. i = i++ = 2
+//  * 6. 2 < 3   
+//  *    符合 ：1. body（ oLi[i].addEventListener('click', function () { console.log(i); }, false); ）
+//  *    不符合：停止
+//  * 7. i = i++ = 3
+//  * 8. 3 < 3 不符合 停止
+//  * 
+//  *    最终 i === 3
+//  */
+// for (var i = 0; i < oLi.length; i++) { // 这个函数自始至终都没有执行过
+//     oLi[i].addEventListener('click', function () {
+//         console.log(i);
+//         // 因此不能确定函数内部的变量 i 到底是多少
+//         // 只有在 handler 执行的时候，console.log 才会执行
+//         // 点击 li 的时候，才能去访问 i，此时 i = 3
+//     }, false);
+// }
+// /**
+//  * i === 0
+//  *  oLi[0].addEventListener('click', function () {
+//         console.log(i); i = ?
+//     }, false);
+//  */
+
+// // 我需要一个作用域在循环的时候，帮我保存一个独一无二的 i，值为循环中的 i 赋值时候的值
+// const oLi = document.querySelectorAll('li');
+// for (var i = 0; i < oLi.length; i++) {
+//     (function (i) {
+//         // 参数为函数内部的临时局部变量
+//         // 每一次当函数执行时，相当于：声明 i，将实参的 i 值赋值给形参的 i 值
+//         oLi[i].addEventListener('click', function () {
+//             console.log(i);
+//         }, false);
+//     })(i);
+// }
+
+
+// const oLi = document.querySelectorAll('li');
+// for (let i = 0; i < oLi.length; i++) {
+//     oLi[i].addEventListener('click', function () {
+//         console.log(i);
+//     }, false);
+// }
+
+
+// function test({ a, b, c }) {
+//     let _a = a;
+//     let _b = b;
+//     let _c = c;
+
+//     function testA() {
+//         function setA(value) {
+//             _a = value;
+//             return _a;
+//         }
+//         return {
+//             get a() {
+//                 return _a;
+//             },
+//             set a(newValue) {
+//                 _a = newValue;
+//             },
+//             setA
+//         }
+//     }
+
+//     function testB() {
+//         function setB(value) {
+//             _b = value;
+//             return _b;
+//         }
+//         return {
+//             get b() {
+//                 return _b;
+//             },
+//             setB
+//         }
+//     }
+
+//     function testC() {
+//         function setC(value) {
+//             _c = value;
+//             return _c;
+//         }
+//         return {
+//             get c() {
+//                 return _c;
+//             },
+//             setC
+//         }
+//     }
+
+//     return {
+//         testA,
+//         testB,
+//         testC
+//     }
+// }
+
+// const { testA, testB, testC } = test({ a: 1, b: 2, c: 3 });
+// const aInfo = testA();
+// const bInfo = testB();
+// const cInfo = testC();
+
+// console.log(aInfo.a); // 1
+// aInfo.setA(8);
+// console.log(aInfo.a); // 8
+
+// import { ref } from 'vue';
+
+// function useRef(initialValue) {
+//     const _value = ref(initialValue);
+//     function _setValue(newValue) {
+//         _value.value = newValue;
+//     }
+//     return [_value, _setValue];
+// }
+
+// const [count, setCount] = useRef(0);
+
+
+// // 获取
+// console.log(count.value); // 输出：0
+// // 赋值
+// setCount(100);
+// console.log(count.value); // 输出：100
+
+
+// function UserInfo(info) {
+// }
+
+// const userInfo = new UserInfo;
+// console.log(userInfo); // UserInfo {}
+
+
+// function UserInfo(info) {
+//     this.username = info.username;
+//     this.agte = info.age;
+
+//     // 实例属性
+//     // this.setInfo = function (info) { // 闭包
+//     //     this.username = info.username;
+//     //     this.agte = info.age;
+//     // }
+// }
+
+// // UserInfo.prototype 为原型属性，被 UserInfo 实例的对象直接继承
+// UserInfo.prototype.setInfo = function (info) {
+//     this.username = info.username;
+//     this.age = info.age;
+// };
+
+// // setInfo 为 UserInfo 的静态方法（static method / static property）
+// // UserInfo.setInfo = function (info) { }
+
+// const userInfo = new UserInfo({
+//     username: 'yaoyaolingxian',
+//     age: 1
+// });
+
+// userInfo.setInfo({
+//     username: 'mate60Pro',
+//     age: 10
+// })
+
+// console.log(userInfo); // UserInfo {username: 'mate60Pro', agte: 10, setInfo: ƒ}
+
+
+// class UserInfo {
+//     constructor(info, callback) {
+//         this.username = info.username;
+//         this.age = info.age;
+//         this.callback = callback;
+//     }
+
+//     setInfo(info) {
+//         const oldUsername = this.username;
+//         const oldUage = this.age;
+
+//         this.username = info.username;
+//         this.age = info.age;
+
+//         this.callback && this.callback(
+//             {
+//                 username: oldUsername,
+//                 age: UserInfo.age(oldUage)
+//             },
+//             {
+//                 username: this.username,
+//                 age: UserInfo.age(this.age)
+//             })
+//     }
+
+//     // 类工具/工具函数
+//     static age(age) {
+//         return age + '岁'
+//     }
+// }
+
+// const userInfo = new UserInfo({
+//     username: 'yaoyaolingxian',
+//     age: 18
+// }, function (oldInfo, newInfo) {
+//     console.log(oldInfo, newInfo);
+// });
+
+// userInfo.setInfo({
+//     username: 'mate60Pro+',
+//     age: 36
+// })
+// // 运行结果：
+// // {username: 'yaoyaolingxian', age: '18岁'} 
+// // {username: 'mate60Pro+', age: '36岁'}
+
+
+// 针对于 var 来说，下面这行代码其实是没有初始化的
+// var a = 1; // 主动将 1 赋值给 a 的过程
+
+/**
+ * GO {
+ *    a: undefined // initialization
+ * }
+ * 
+ * 执行期 undefined -> 1
+ */
+
+
+// var a = 1;
+// console.log(window.a); 
+
+
+// {
+//     // 块级作用域
+
+// }
+
+// console.log(a);
+// var a = 1; // undefined
+// /**
+//  * 预编译 
+//  * GO { a: undefined }
+//  * 1. 声明 a 标识
+//  * 2. 将 a 标识初始化为 undefined
+//  * 
+//  * 执行
+//  * 1. 赋值给 a 标识
+//  */
+
+
+// test(); // ReferenceError: Cannot access 'test' before initialization
+// const test = () => { }
+
+
+// let a;
+// console.log(a); // undefined
+// JS系统中
+// undefined是唯一自动化生成的默认值 原始性的默认值
+
+
+// if (true) var a = 1;
+// if (true) let a = 1; // SyntaxError: Lexical declaration cannot appear in a single-statement context
+
+
+// ; (function () {
+//     const a = 1;
+//     const b = 2;
+
+//     function test(a, b) {
+//         return a + b;
+//     }
+
+//     const t = test(a, b);
+//     console.log(t); // 3
+// })();
+
+
+// var a = 1;
+// console.log(a); // 1
+// {
+//     console.log(a); // ƒ a() { console.log(123); }
+//     function a() {
+//         console.log(123);
+//     }
+//     console.log(a); // ƒ a() { console.log(123); }
+// }
+// console.log(a); // ƒ a() { console.log(123); }
+
+// 'use strict'
+
+// var a = 1;
+// console.log(a);
+// {
+//     console.log(a);
+//     function a() {
+//         console.log(123);
+//     };
+//     console.log(a);
+// }
+// console.log(a); 
+
+// var i = 0;
+// for (; ;) {
+//     if (i >= 5) {
+//         break;
+//     }
+//     console.log(i); // 0 1 2 3 4
+//     i++;
+// }
+
+// arr = [];
+// for (var i = 0; i < 5; i++) {
+//     arr[i] = function () {
+//         console.log(i);
+//     }
+// }
+// console.log(arr);
+// arr.forEach(cb => cb());
+
+
+// arr = [];
+// for (var i = 0; i < 5; i++) {
+//     (function (i) {
+//         console.log(i); // 0 1 2 3 4
+//     })(i);
+// }
+
+
+// arr = [];
+// for (let i = 0; i < 5; i++) {
+//     arr[i] = function () {
+//         console.log(i); // 0 1 2 3 4
+//     }
+// }
+// arr.forEach(cb => cb());
+/**
+ * 初始化照样做：let i -> 将 0 赋值给 i
+ * 每一次迭代的时候，会发生以下事情：
+ * 1. 系统会为 for 的 loop body 这个范围创建一个新的词法作用域
+ * 2. 在词法作用域中新声明一个 i（let i）
+ * 3. 将上一次迭代或者初始化的值，赋值给这个新的 i 变量
+ * 4. 对新的词法作用域内的 i 进行操作 i++
+ */
+
+
+// const arr = [];
+// let memo;
+
+// {
+//     let i;
+//     i = 0;
+//     arr[i] = function () {
+//         console.log(i);
+//     }
+//     memo = i + 1;
+// }
+
+// {
+//     let i;
+//     i = memo;
+//     arr[i] = function () {
+//         console.log(i);
+//     }
+//     memo = i + 1;
+// }
+
+// {
+//     let i;
+//     i = memo;
+//     arr[i] = function () {
+//         console.log(i);
+//     }
+//     memo = i + 1;
+// }
+
+// {
+//     let i;
+//     i = memo;
+//     arr[i] = function () {
+//         console.log(i);
+//     }
+//     memo = i + 1;
+// }
+
+// {
+//     let i;
+//     i = memo;
+//     arr[i] = function () {
+//         console.log(i);
+//     }
+//     memo = i + 1;
+// }
+
+// arr.forEach(cb => cb());
+
+
+// for (let i = 0, test = () => i; i < 5; i++, test = () => i) {
+//     console.log(test()); // 0 1 2 3 4
+// }
+
+
+// const a; // SyntaxError: Missing initializer in const declaration
+
+// const a = 1;
+// const a = 2; // SyntaxError: Identifier 'a' has already been declared
+
+
+// const person = {
+//     name: "Alice",
+//     age: 25
+// };
+// person.age = 26; // 可以修改引用值内部的属性
+// console.log(person.age); // 输出 26
+// delete person.age; // 可以删除引用值内部的属性
+// console.log(person.age); // 输出 undefined
+
+
+// const API_URLs = Object.freeze({
+//     GET_LIST: '',
+//     REMOVE_ITEM: '',
+//     ADD_ITEM: ''
+// });
+// API_URLs.GET_LIST = 123;
+// SyntaxError: Identifier 'API_URLs' has already been declared
+
+
+// class User { }
+// console.log(typeof User); // function
+
+// let Hd = class { };
+// console.log(Hd); // class { }
+
+
+// class User {
+//     show() {
+
+//     }
+//     // 注意!两个方法之间不要使用逗号','
+//     get() {
+//         console.log('文字内容填充');
+//     }
+
+// }
+// let user = new User;
+// // console.dir(user); 用于显示一个对象的详细信息，包括对象的属性、方法、原型链等。它会以一个展开的方式输出对象的结构，方便查看对象的内部信息。
+// user.get(); // 文字内容填充
+
+
+// class User {
+//     constructor(name) {
+//         this.name = name;
+//     }
+// }
+// let user = new User('用户');
+// console.log(user.name); // 用户
+
+
+// class Person {
+//     constructor(name, age) {
+//         this.name = name;
+//         this.age = age;
+//     }
+// }
+
+// const person1 = new Person('John', 25);
+// console.log(person1.name); // 输出: John
+// console.log(person1.age); // 输出: 25
+
+
+// class Database {
+//     constructor() {
+//         this.connect(); // 连接数据库
+//         this.loadData(); // 加载默认数据
+//     }
+
+//     connect() {
+//         // 连接数据库的具体操作
+//     }
+
+//     loadData() {
+//         // 加载默认数据的具体操作
+//     }
+// }
+
+// const db = new Database();
+
+
+// class User {
+//     constructor(name) {
+//         this.name = name;
+//     }
+//     // 方法
+//     getName() {
+//         return this.name;
+//     }
+// }
+// let user1 = new User('用户1');
+// console.log(user1.name); // 用户1
+// let user2 = new User('用户2');
+// console.log(user2.name); // 用户2
+// console.log(user1.getName()); // 用户1
+
+
+// class User {
+//     constructor(name) {
+//         this.name = name;
+//     }
+//     show() { }
+// }
+
+// let u = new User('Tom');
+// // 获取对象自身所有属性
+// console.log(Object.getOwnPropertyNames(u)); // ['name']
+// console.log(Object.getOwnPropertyNames(User.prototype)); // (2) ['constructor', 'show']
+
+// function Client(name) {
+//     this.name = name;
+// }
+// Client.prototype.show = function () { }
+
+// let c = new Client('Sam');
+// console.log(Object.getOwnPropertyNames(c)); // ['name']
+// console.log(Object.getOwnPropertyNames(Client.prototype)); // (2) ['constructor', 'show']
+
+
+// class User {
+//     site = 'Jimmy';
+//     constructor(name) {
+//         this.name = name;
+//     }
+//     changeSite(value) {
+//         this.site = value
+//     }
+//     show() {
+//         return `${this.site}:${this.name}`;
+//     }
+// }
+
+// let user = new User('Tim');
+// user.changeSite('NewJimmy')
+// console.log(user.show()); // NewJimmy:Tim
+
+
+// function User(name) {
+//     this.name = name;
+// }
+// User.prototype.show = function () { }
+// console.log(JSON.stringify(Object.getOwnPropertyDescriptor(User.prototype, 'show'), null, 2));
+
+// let u = new User('Tom');
+
+// for (const key in u) {
+//     if (u.hasOwnProperty(key)) {
+//         console.log(key); // name
+//     }
+// } 
+
+
+// class User {
+//     constructor(name) {
+//         this.name = name;
+//     }
+//     show() { }
+// }
+
+// let u = new User('Tom');
+
+// console.dir(User);
+
+// console.log(JSON.stringify(
+//     Object.getOwnPropertyDescriptor
+//         (User.prototype, 'show'), // "enumerable": false, 不可遍历
+//     null,
+//     2));
+
+// for (const key in u) {
+//     console.log(key); // name
+// } 
+
+
+
+// class User {
+//     show() {
+//         function test() {
+//             console.log(this); // undefined
+//         }
+//         test()
+//     }
+// }
+
+// let u = new User();
+// u.show();
+
+// 'use strict';
+
+// function User() { }
+// User.prototype.show = function () {
+//     function test() {
+//         console.log(this); // undefined
+//     }
+//     test();
+// }
+// let u = new User();
+// u.show();
+// function show() {
+//     console.log(this); // undefined
+// }
+// show();
+
+
+// function Web(url) {
+//     this.url = url;
+// }
+// Web.url = 'qq.zone'; // 静态属性
+// let hd = new Web('qq.com');
+// console.log(hd); // Web {url: 'qq.com'}
+// console.dir(Web);
+
+
+// class MyClass {
+//     static myStaticProperty = "Hello, I'm a static property";
+
+//     static myStaticMethod() {
+//         console.log("Hello, I'm a static method");
+//     }
+// }
+// console.log(MyClass.myStaticProperty); // 输出: Hello, I'm a static property
+
+// MyClass.myStaticMethod(); // 输出: Hello, I'm a static method
+
+
+// class Request {
+//     static host = 'https://cn.bing.com'; // 静态属性
+
+//     api(url) {
+//         return Request.host + `/${url}`;
+//     }
+// }
+// let obj = new Request();
+// console.log(obj.api('article')); // https://cn.bing.com/article
+
+
+// function User() { }
+// User.prototype.show1 = function () {
+//     console.log(this); // User {}
+//     console.log(this === User.prototype.constructor); // false
+//     // 在这个上下文中，方法中的 this 关键字指向的是调用该方法的对象，而不是 User.prototype.constructor。
+// }
+// User.__proto__.show2 = function () {
+//     console.log(this); // ƒ User() { }
+//     console.log(this === User.prototype.constructor); // true
+// }
+// let user = new User();
+// user.show1();
+// User.show2();
+
+
+// function User() { }
+// User.prototype.show1 = function () {
+//     console.log(this); // User {} 表示实例对象 user 的内容
+//     console.log(this === User.prototype.constructor); // false
+// };
+
+// User.__proto__.show2 = function () {
+//     console.log(this); // ƒ User() { }
+//     console.log(this === User); // true
+//     console.log(this === User.prototype.constructor); // true
+// };
+
+// let user = new User();
+
+// user.show1();
+// console.log(user);// User {}
+
+// User.show2();
+
+
+// class User {
+//     constructor(name, age) {
+//         this.name = name;
+//         this.age = age;
+//     }
+//     static create(...args) {
+//         return new this(...args);
+//     }
+// }
+// let user = User.create('Tom', 26);
+// console.log(user); // User {name: 'Tom', age: 26}
+
+
+// const data = [
+//     { name: 'js', price: 100 },
+//     { name: 'mysql', price: 200 },
+//     { name: 'python', price: 300 },
+// ];
+
+// class Lesson {
+//     constructor(data) {
+//         this.model = data;
+//     }
+//     get price() {
+//         return this.model.price;
+//     }
+//     get name() {
+//         return this.model.name;
+//     }
+//     static totalPrice(data) {
+//         return data.reduce((accumulator, current) => {
+//             return accumulator + current.price;
+//         }, 0)
+//     }
+//     static createBatch(data) {
+//         return data.map(item => new Lesson(item));
+//     }
+//     static maxPrice(data) {
+//         return data.sort((a, b) => b.price - a.price)[0];
+//     }
+// }
+
+// let lessons = Lesson.createBatch(data);
+// console.log(Lesson.maxPrice(lessons).price); // 300
+// console.log(Lesson.maxPrice(lessons).name); // 300
+// console.log(Lesson.totalPrice(lessons)); // 600
+
+
+class Request {
+    constructor(host) {
+        // 初始化一个空的 data 对象
+        this.data = {};
+        // 使用 host 的 setter 方法设置 data.host 的值为传入的 host 值
+        this.host = host;
+    }
+    // 定义 host 的 setter 方法
+    set host(url) {
+        // 定义 host 的 setter 方法
+        if (!/^https?:\/\//i.test(url)) {
+            // 如果不是有效的地址格式，抛出错误
+            throw new Error('地址错误');
+        }
+        // 将 data.host 属性设置为传入的 url 值
+        console.log(2);
+        this.data.host = url;
+    }
+    // 定义 host 的 getter 方法
+    get host() {
+        // 返回 data.host 属性的值
+        console.log(1);
+        return this.data["host"];
+    }
+    h() { }
+}
+// 创建一个 Request 实例，并传入初始的 host 值
+let req = new Request('https://www.bilibili.com');
+// 将 host 属性的值设置为新的 URL
+req.host = 'https://baidu.com';
+console.log(req);
+// console.log(req.host);

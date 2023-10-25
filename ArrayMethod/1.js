@@ -2715,35 +2715,63 @@
 // console.log(Lesson.totalPrice(lessons)); // 600
 
 
-class Request {
-    constructor(host) {
-        // 初始化一个空的 data 对象
-        this.data = {};
-        // 使用 host 的 setter 方法设置 data.host 的值为传入的 host 值
-        this.host = host;
-    }
-    // 定义 host 的 setter 方法
-    set host(url) {
-        // 定义 host 的 setter 方法
-        if (!/^https?:\/\//i.test(url)) {
-            // 如果不是有效的地址格式，抛出错误
-            throw new Error('地址错误');
-        }
-        // 将 data.host 属性设置为传入的 url 值
-        console.log(2);
-        this.data.host = url;
-    }
-    // 定义 host 的 getter 方法
-    get host() {
-        // 返回 data.host 属性的值
-        console.log(1);
-        return this.data["host"];
-    }
-    h() { }
-}
-// 创建一个 Request 实例，并传入初始的 host 值
-let req = new Request('https://www.bilibili.com');
-// 将 host 属性的值设置为新的 URL
-req.host = 'https://baidu.com';
-console.log(req);
-// console.log(req.host);
+// class Request {
+//     constructor(host) {
+//         // 初始化一个空的 data 对象
+//         this.data = {};
+//         // 使用 host 的 setter 方法设置 data.host 的值为传入的 host 值
+//         this.host = host;
+//     }
+//     // 定义 host 的 setter 方法
+//     set host(url) {
+//         // 定义 host 的 setter 方法
+//         if (!/^https?:\/\//i.test(url)) {
+//             // 如果不是有效的地址格式，抛出错误
+//             throw new Error('地址错误');
+//         }
+//         // 将 data.host 属性设置为传入的 url 值
+//         this.data.host = url;
+//     }
+//     // 定义 host 的 getter 方法
+//     get host() {
+//         // 返回 data.host 属性的值
+//         return this.data["host"];
+//     }
+// }
+// // 创建一个 Request 实例，并传入初始的 host 值
+// let req = new Request('https://www.bilibili.com');
+// // 将 host 属性的值设置为新的 URL
+// req.host = 'https://baidu.com';
+// console.log(req);
+// console.log(req.host); // https://baidu.com
+
+
+// const HOST = Symbol('主机');
+// class User {
+//     [HOST] = 'https://www.bilibili.com'; // 使用 Symbol 定义保护属性
+
+//     constructor(name) {
+//         this.name = name;
+//     }
+
+//     set host(url) {
+//         if (!/^https?:\/\//i.test(url)) {
+//             throw new Error('地址错误');
+//         }
+//         this[HOST] = url;
+//     }
+//     get host() {
+//         return this[HOST];
+//     }
+// }
+// let user = new User('yummy');
+// user.host = 'https://www.baidu.com';
+// console.log(user.host); // https://www.baidu.com
+
+const HOSt = {
+    url: 'https://www.houdunren.com/api',
+    port: 443
+};
+Object.freeze(HOSt);
+HOSt.port = 80;
+console.log(HOSt.port); // 443

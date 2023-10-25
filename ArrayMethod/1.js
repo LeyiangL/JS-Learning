@@ -2768,10 +2768,23 @@
 // user.host = 'https://www.baidu.com';
 // console.log(user.host); // https://www.baidu.com
 
-const HOSt = {
-    url: 'https://www.houdunren.com/api',
-    port: 443
-};
-Object.freeze(HOSt);
-HOSt.port = 80;
-console.log(HOSt.port); // 443
+// const HOSt = {
+//     url: 'https://www.houdunren.com/api',
+//     port: 443
+// };
+// Object.freeze(HOSt);
+// HOSt.port = 80;
+// console.log(HOSt.port); // 443
+
+
+let a = 1;
+let b = a;
+console.log(a, b); // 1 1
+b = 3;
+console.log(a, b); // 1 3
+
+let e = { name: 'Tom' };
+let f = e;
+console.log(e, f); // {name: 'Tom'} {name: 'Tom'}
+f.name = 'newTom';
+console.log(e, f); // {name: 'newTom'} {name: 'newTom'}

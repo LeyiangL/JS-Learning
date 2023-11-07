@@ -2746,11 +2746,36 @@
 // console.log(req.host); // https://baidu.com
 
 
+// let a = 1;
+// let b = a;
+// console.log(a, b); // 1 1
+// b = 3;
+// console.log(a, b); // 1 3
+
+// let e = { name: 'Tom' };
+// let f = e;
+// console.log(e, f); // {name: 'Tom'} {name: 'Tom'}
+// f.name = 'newTom';
+// console.log(e, f); // {name: 'newTom'} {name: 'newTom'}
+
+
+// const HOSt = {
+//     url: 'https://www.houdunren.com/api',
+//     port: 443
+// };
+// Object.freeze(HOSt);
+// HOSt.port = 80;
+// console.log(HOSt.port); // 443
+
+
+// HD 代码
 // const HOST = Symbol('主机');
-// class User {
+// class Common { }
+// class User extends Common {
 //     [HOST] = 'https://www.bilibili.com'; // 使用 Symbol 定义保护属性
 
 //     constructor(name) {
+//         super();
 //         this.name = name;
 //     }
 
@@ -2768,23 +2793,250 @@
 // user.host = 'https://www.baidu.com';
 // console.log(user.host); // https://www.baidu.com
 
-// const HOSt = {
-//     url: 'https://www.houdunren.com/api',
-//     port: 443
+
+// function Foo() { }
+// var foo = new Foo();
+
+// console.log(foo.__proto__ === Foo.prototype); // true
+// console.log(Foo.__proto__ === Function.prototype); // true
+// console.log(Object.__proto__ === Function.prototype); // true
+// console.log(Function.__proto__ === Function.prototype); // true
+// console.log(Function.prototype.__proto__ === Object.prototype); // true
+
+// // 如果自身有constructor属性，则取自身；如果自身没有constructor，则取原型上的constructor
+// console.log(Object.prototype.constructor === Object); // true
+// console.log(Function.prototype.constructor === Function); // true
+// console.log(Object.constructor === Function); // true
+
+// console.log(Array.constructor === Function); // true
+// console.log(String.constructor === Function); // true
+// console.log(Number.constructor === Function); // true
+
+
+// console.log(Object.prototype.__proto__); // null
+
+
+// function Super() {
+//     this.a = [1, 2, 3, 4];
+// }
+
+// Super.prototype.say = function () {
+//     console.log(1);
+// }
+
+// function Sub() {
+//     Super.call(this); // 调用 Super 构造函数，将 this 绑定到 Sub 的实例上
+// }
+
+// // 原型链继承
+// Sub.prototype = new Super();
+
+// var sub1 = new Sub();
+// var sub2 = new Sub();
+
+// sub1.a.push(5);
+// console.log(sub1.a); // (5) [1, 2, 3, 4, 5]
+// console.log(sub2.a); // (4) [1, 2, 3, 4]
+// sub1.say(); // 1
+// sub2.say(); // 1
+
+
+// function Super() {
+//     this.a = [1, 2, 3, 4];
+// }
+
+// Super.prototype.say = function () {
+//     console.log(1);
+// }
+
+// function Sub() {
+//     Super.call(this);
+// }
+
+// // 兼容不支持 Object.create() 方法的环境
+// if (!Object.create) { // 环境不支持 Object.create()
+//     Object.create = function (proto) { // 定义了一个匿名函数作为 Object.create 的替代实现
+//         var F = function () { }; // 创建了一个空的构造函数 F
+//         F.prototype = proto; // 将构造函数 F 的原型对象设置为传入的 proto 参数
+//         return new F(); // 创建一个新的对象，并将其作为 Object.create() 的返回值返回
+//     }
+// }
+
+// Sub.prototype.say2 = function () {
+//     console.log('say2');
+// }
+
+// // 解决方法
+// Sub.prototype = Object.create(Super.prototype); // 相当于 Sub.prototype.__proto__ = Super.prototype;
+
+// var sub1 = new Sub();
+// var sub2 = new Sub();
+
+// sub1.a.push(5);
+// console.log(sub1.a); // (5) [1, 2, 3, 4, 5]
+// console.log(sub2.a); // (4) [1, 2, 3, 4]
+// sub1.say2(); // Uncaught TypeError: sub1.say2 is not a function
+// sub2.say2(); // 1
+
+
+// function Super() {
+//     this.a = [1, 2, 3, 4];
+// }
+
+// Super.prototype.say = function () {
+//     console.log(1);
+// }
+
+// function Sub() {
+//     Super.call(this);
+// }
+
+// // 创建一个中间对象，并将其原型设置为 Super.prototype
+// function inherit(Sub, Super) {
+//     var F = function () { };
+//     F.prototype = Super.prototype;
+//     var prototype = new F();
+//     prototype.constructor = Sub;
+//     Sub.prototype = prototype;
+// }
+
+// inherit(Sub, Super);
+
+// var sub1 = new Sub();
+// var sub2 = new Sub();
+
+// sub1.a.push(5);
+// console.log(sub1.a); // [1, 2, 3, 4, 5]
+// console.log(sub2.a); // [1, 2, 3, 4]
+// sub1.say(); // 1
+// sub2.say(); // 1
+
+
+// var inherit = (function () {
+//     var F = function () { };
+//     return function (Target, Origin) {
+//         F.prototype = Origin.prototype;
+//         Target.prototype = new F();
+//         Target.prototype.constructor = Target;
+//         Target.prototype.uber = Origin.prototype;
+//     }
+// }())
+// inherit(Son, Father)
+// var son = new Son();
+// var father = new Father();
+
+
+// // 定义一个立即执行函数，返回一个继承函数
+// var inherit = (function () {
+//     // 定义一个空的构造函数 F
+//     var F = function () { };
+
+//     // 返回继承函数
+//     return function (Target, Origin) {
+//         // 将 Origin.prototype 赋值给 F.prototype，建立原型链继承关系
+//         F.prototype = Origin.prototype;
+
+//         // 创建一个 F 的实例，并将其赋值给 Target.prototype，实现继承
+//         Target.prototype = new F();
+
+//         // 将 Target.prototype.constructor 指向 Target，确保构造函数的正确性
+//         Target.prototype.constructor = Target;
+
+//         // 在 Target.prototype 上添加一个 uber 属性，指向 Origin.prototype，用于访问父类的原型
+//         Target.prototype.uber = Origin.prototype;
+//     }
+// })();
+
+// // 使用继承函数将 Son 继承自 Father
+// inherit(Son, Father);
+
+// // 创建 Son 的实例
+// var son = new Son();
+
+// // 创建 Father 的实例
+// var father = new Father();
+
+
+// class Super {
+//     constructor() {
+//         this.a = [1, 2, 3, 4];
+//     }
+//     say2() {
+//         console.log('say2');
+//     }
+// }
+
+// class Sub extends Super {
+//     say1() {
+//         console.log('say1');
+//     }
+// }
+// var sub1 = new Sub();
+// var sub2 = new Sub();
+
+// sub1.a.push(5);
+// console.log(sub1.a); // (5) [1, 2, 3, 4, 5]
+// console.log(sub2.a); // (4) [1, 2, 3, 4]
+// sub1.say1(); // say1
+// sub1.say2(); // say2
+
+
+// // 定义一个构造函数 Person
+// function Person() { }
+
+// // 在 Person 的原型对象上添加属性 num
+// Person.prototype.num = 321;
+
+// // 在 Person 的原型对象上添加方法 show
+// Person.prototype.show = function () {
+//     console.log("show method");
+// }
+
+// // 创建一个新对象 obj，通过 new 关键字调用 Person 构造函数
+// var obj = new Person;
+
+// // 遍历 Person.prototype 中的每个属性或方法，并将其复制到 obj 中
+// for (var key in Person.prototype) {
+//     obj[key] = Person.prototype[key];
+// }
+
+// // 打印 obj 中的 num 属性值
+// console.log(obj.num);
+
+// // 调用 obj 的 show 方法
+// obj.show();
+
+
+// // 定义一个父对象
+// var parent = {
+//     name: "Parent",
+//     getName: function () {
+//         return this.name;
+//     }
 // };
-// Object.freeze(HOSt);
-// HOSt.port = 80;
-// console.log(HOSt.port); // 443
 
+// // 创建一个空对象，用于继承父对象
+// var child = {};
 
-let a = 1;
-let b = a;
-console.log(a, b); // 1 1
-b = 3;
-console.log(a, b); // 1 3
+// // 实现拷贝继承的函数
+// function copyInheritance(parent, child) {
+//     for (var key in parent) {
+//         if (parent.hasOwnProperty(key)) { // 确保只复制父对象自身的属性，而不是继承来的属性
+//             child[key] = parent[key];
+//         }
+//     }
+// }
 
-let e = { name: 'Tom' };
-let f = e;
-console.log(e, f); // {name: 'Tom'} {name: 'Tom'}
-f.name = 'newTom';
-console.log(e, f); // {name: 'newTom'} {name: 'newTom'}
+// // 使用拷贝继承将父对象的属性和方法复制到子对象中
+// copyInheritance(parent, child);
+
+// // 在子对象上添加新属性
+// child.age = 10;
+
+// // 在父对象上修改属性
+// parent.name = "New Parent";
+
+// // 测试输出
+// console.log(child.name); // 输出: "Parent"，子对象继承了父对象的属性
+// console.log(child.age); // 输出: 10，子对象自己的属性
+// console.log(child.getName()); // 输出: "Parent"，子对象继承了父对象的方法

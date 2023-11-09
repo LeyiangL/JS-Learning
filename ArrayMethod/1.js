@@ -16,7 +16,7 @@
 // }
 // arr.forEach(function (item, index, arr) {
 //     console.log(this); // Window
-// }); 
+// });
 
 
 // var arr = [1, 2, 3, 4];
@@ -44,10 +44,10 @@
 // var arr = [1, , 3];
 // delete arr[1];
 // arr.forEach(function (item) {
-//     console.log(item); // 1 3 
+//     console.log(item); // 1 3
 // })
 // for (var i = 0; i < arr.length; i++) {
-//     console.log(arr[i]); // 1 undefined 3 
+//     console.log(arr[i]); // 1 undefined 3
 // }
 
 
@@ -523,7 +523,7 @@
 // const item = arr.find(function (item, index, arr) {
 //     console.log(item, index, arr);
 //     console.log(this); // Window
-// }) 
+// })
 
 
 // const arr = [
@@ -592,7 +592,7 @@
 //     console.log(index, item);
 // })
 
-// // [1, 3, , , , 7, 8, 9];   
+// // [1, 3, , , , 7, 8, 9];
 
 
 // const arr = [1, 2, 3, , , , 7, 8, 9];
@@ -643,7 +643,7 @@
 
 // const arr = [, 2, , , , , ,];
 // const idx = arr.findIndex(function (item, index, arr) {
-//     console.log(this); // {a: 1} 
+//     console.log(this); // {a: 1}
 // }, { a: 1 });
 
 // 'use strict'
@@ -752,7 +752,7 @@
 //         }, [])
 //         : arr
 // }
-// console.log(arr.deepFlat(Infinity)); 
+// console.log(arr.deepFlat(Infinity));
 
 
 // Array.prototype.deepFlat = function () {
@@ -1076,7 +1076,7 @@
 
 // const newArr = Array.from(/** undefined */);
 // const newArr = Array.from(undefined);
-// console.log(newArr); 
+// console.log(newArr);
 // Uncaught TypeError: undefined is not iterable (cannot read property Symbol(Symbol.iterator))
 
 
@@ -1277,8 +1277,8 @@
 // console.log(newArr);
 
 
-// console.log(typeof document.all); // undefined 
-// console.log(undefined == document.all); // true 
+// console.log(typeof document.all); // undefined
+// console.log(undefined == document.all); // true
 
 
 // var obj = {};
@@ -1440,7 +1440,7 @@
 //         return -1;
 //     }
 //     return 0;
-// }));  
+// }));
 
 
 // var arr = ['Zhangsan', 'LiHua', 'MIKE', 'tony'];
@@ -1982,22 +1982,22 @@
 // const oLi = document.querySelectorAll('li');
 // /**
 //  * for 执行的流程是什么
-//  * 
+//  *
 //  * 1. var i   i = 0
 //  * 2. 0 < 3
 //  *    符合 ：1. body（ oLi[i].addEventListener('click', function () { console.log(i); }, false); ）
 //  *    不符合：停止
 //  * 3. i = i++ = 1
-//  * 4. 1 < 3    
+//  * 4. 1 < 3
 //  *    符合 ：1. body（ oLi[i].addEventListener('click', function () { console.log(i); }, false); ）
 //  *    不符合：停止
 //  * 5. i = i++ = 2
-//  * 6. 2 < 3   
+//  * 6. 2 < 3
 //  *    符合 ：1. body（ oLi[i].addEventListener('click', function () { console.log(i); }, false); ）
 //  *    不符合：停止
 //  * 7. i = i++ = 3
 //  * 8. 3 < 3 不符合 停止
-//  * 
+//  *
 //  *    最终 i === 3
 //  */
 // for (var i = 0; i < oLi.length; i++) { // 这个函数自始至终都没有执行过
@@ -2202,7 +2202,7 @@
 //     age: 36
 // })
 // // 运行结果：
-// // {username: 'yaoyaolingxian', age: '18岁'} 
+// // {username: 'yaoyaolingxian', age: '18岁'}
 // // {username: 'mate60Pro+', age: '36岁'}
 
 
@@ -2213,13 +2213,13 @@
  * GO {
  *    a: undefined // initialization
  * }
- * 
+ *
  * 执行期 undefined -> 1
  */
 
 
 // var a = 1;
-// console.log(window.a); 
+// console.log(window.a);
 
 
 // {
@@ -2230,11 +2230,11 @@
 // console.log(a);
 // var a = 1; // undefined
 // /**
-//  * 预编译 
+//  * 预编译
 //  * GO { a: undefined }
 //  * 1. 声明 a 标识
 //  * 2. 将 a 标识初始化为 undefined
-//  * 
+//  *
 //  * 执行
 //  * 1. 赋值给 a 标识
 //  */
@@ -2289,7 +2289,7 @@
 //     };
 //     console.log(a);
 // }
-// console.log(a); 
+// console.log(a);
 
 // var i = 0;
 // for (; ;) {
@@ -2545,7 +2545,7 @@
 //     if (u.hasOwnProperty(key)) {
 //         console.log(key); // name
 //     }
-// } 
+// }
 
 
 // class User {
@@ -2567,7 +2567,7 @@
 
 // for (const key in u) {
 //     console.log(key); // name
-// } 
+// }
 
 
 
@@ -2766,32 +2766,6 @@
 // Object.freeze(HOSt);
 // HOSt.port = 80;
 // console.log(HOSt.port); // 443
-
-
-// HD 代码
-// const HOST = Symbol('主机');
-// class Common { }
-// class User extends Common {
-//     [HOST] = 'https://www.bilibili.com'; // 使用 Symbol 定义保护属性
-
-//     constructor(name) {
-//         super();
-//         this.name = name;
-//     }
-
-//     set host(url) {
-//         if (!/^https?:\/\//i.test(url)) {
-//             throw new Error('地址错误');
-//         }
-//         this[HOST] = url;
-//     }
-//     get host() {
-//         return this[HOST];
-//     }
-// }
-// let user = new User('yummy');
-// user.host = 'https://www.baidu.com';
-// console.log(user.host); // https://www.baidu.com
 
 
 // function Foo() { }
@@ -3040,3 +3014,94 @@
 // console.log(child.name); // 输出: "Parent"，子对象继承了父对象的属性
 // console.log(child.age); // 输出: 10，子对象自己的属性
 // console.log(child.getName()); // 输出: "Parent"，子对象继承了父对象的方法
+
+
+// const protecteds = Symbol(); // 多个私有属性
+// class Common {
+//     constructor() {
+//         this[protecteds] = {}; // 多个私有属性
+//         this[protecteds].host = 'https://www.bilibili.com'; // 多个私有属性
+//     }
+//     set host(url) {
+//         if (!/^https?:\/\//i.test(url)) {
+//             throw new Error('地址错误');
+//         }
+//         this[protecteds].host = url;
+//     }
+//     get host() {
+//         return this[protecteds].host;
+//     }
+// }
+// class User extends Common {
+//     constructor(name) {
+//         super(); // 调用父类（即基类）的构造函数
+//         this[protecteds].name = name;
+//     }
+//     get name() {
+//         return this[protecteds].name;
+//     }
+// }
+// let user = new User('yummy');
+// user.host = 'https://www.baidu.com';
+// console.log(user.host); // https://www.baidu.com
+// console.log(user.name); // yummy
+
+
+// let privateData = new WeakMap();
+
+// class PrivateObject {
+//     constructor() {
+//         privateData.set(this, { privateField: 'I am private' });
+//     }
+
+//     getPrivateField() {
+//         return privateData.get(this).privateField;
+//     }
+// }
+
+// let obj = new PrivateObject();
+// console.log(obj.getPrivateField()); // 输出 "I am private"
+
+// // 现在让 obj 变成不可访问
+// obj = null;
+
+// // 在这个时刻，obj 对象已经没有任何引用指向它
+// // 因此，obj 对象会被垃圾回收
+
+// // 由于 obj 对象被垃圾回收，与之关联的 privateData 也会被释放
+// // 这样，privateData 中存储的私有属性信息也会被释放
+
+
+const protecteds = new WeakMap();
+class Comment {
+    constructor(name) {
+        this.name = name;
+        protecteds.set(this, {
+            host: 'https://www.bilibili.com'
+        });
+    }
+    set host(url) {
+        if (!/^https?:\/\//i.test(url)) {
+            throw new Error('地址错误');
+        }
+        protecteds.set(this, { ...protecteds.get(this), host: url }); // get 方法用于从 WeakMap 中获取与指定键相关联的值。
+    }
+    get host() {
+        return protecteds.get(this)['host'];
+    }
+}
+class User extends Comment {
+    constructor(name) {
+        super(name);
+        this.name = name;
+    }
+    set name(name) {
+        // protecteds.set(this, { ...protecteds.get(this), name: name })
+        protecteds.set(this, { ...protecteds.get(this), name }); // 简写
+    }
+    get name() {
+        return protecteds.get(this)['name'];
+    }
+}
+let user = new User('yummy');
+console.log(user.name); // yummy

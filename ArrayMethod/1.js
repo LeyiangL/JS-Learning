@@ -3072,36 +3072,63 @@
 // // 这样，privateData 中存储的私有属性信息也会被释放
 
 
-const protecteds = new WeakMap();
-class Comment {
+// const protecteds = new WeakMap();
+// class Comment {
+//     constructor(name) {
+//         this.name = name;
+//         protecteds.set(this, {
+//             host: 'https://www.bilibili.com'
+//         });
+//     }
+//     set host(url) {
+//         if (!/^https?:\/\//i.test(url)) {
+//             throw new Error('地址错误');
+//         }
+//         protecteds.set(this, { ...protecteds.get(this), host: url }); // get 方法用于从 WeakMap 中获取与指定键相关联的值。
+//     }
+//     get host() {
+//         return protecteds.get(this)['host'];
+//     }
+// }
+// class User extends Comment {
+//     constructor(name) {
+//         super(name);
+//         this.name = name;
+//     }
+//     set name(name) {
+//         // protecteds.set(this, { ...protecteds.get(this), name: name })
+//         protecteds.set(this, { ...protecteds.get(this), name }); // 简写
+//     }
+//     get name() {
+//         return protecteds.get(this)['name'];
+//     }
+// }
+// let user = new User('yummy');
+// console.log(user.name); // yummy
+
+class Common {
+    #check = () => {
+        if (this.name.length < 5) {
+            throw new Error('名字长度不能小于5位');
+        }
+        return true;
+    }
+}
+class User extends Common {
+    #host = 'https://www.bilibili.com';
     constructor(name) {
         this.name = name;
-        protecteds.set(this, {
-            host: 'https://www.bilibili.com'
-        });
+        this.#check(name); // Uncaught SyntaxError: Private field '#check' must be declared in an enclosing class
+        // 属性 “#check” 在类 “Common" 外部不可访问，因为它具有专用标识符
     }
     set host(url) {
         if (!/^https?:\/\//i.test(url)) {
             throw new Error('地址错误');
         }
-        protecteds.set(this, { ...protecteds.get(this), host: url }); // get 方法用于从 WeakMap 中获取与指定键相关联的值。
+        this.#host = url;
     }
-    get host() {
-        return protecteds.get(this)['host'];
-    }
-}
-class User extends Comment {
-    constructor(name) {
-        super(name);
-        this.name = name;
-    }
-    set name(name) {
-        // protecteds.set(this, { ...protecteds.get(this), name: name })
-        protecteds.set(this, { ...protecteds.get(this), name }); // 简写
-    }
-    get name() {
-        return protecteds.get(this)['name'];
-    }
+
 }
 let user = new User('yummy');
-console.log(user.name); // yummy
+user.host = 'https://www.baidu.com';
+console.log(user); // User {name: 'yummy', #host: 'https://www.baidu.com', #check: ƒ}

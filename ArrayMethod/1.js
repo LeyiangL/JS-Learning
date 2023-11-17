@@ -3106,29 +3106,57 @@
 // let user = new User('yummy');
 // console.log(user.name); // yummy
 
-class Common {
-    #check = () => {
-        if (this.name.length < 5) {
-            throw new Error('名字长度不能小于5位');
-        }
-        return true;
-    }
-}
-class User extends Common {
-    #host = 'https://www.bilibili.com';
+// class Common {
+//     #check = () => {
+//         if (this.name.length < 5) {
+//             throw new Error('名字长度不能小于5位');
+//         }
+//         return true;
+//     }
+// }
+// class User extends Common {
+//     #host = 'https://www.bilibili.com';
+//     constructor(name) {
+//         this.name = name;
+//         this.#check(name); // Uncaught SyntaxError: Private field '#check' must be declared in an enclosing class
+//         // 属性 “#check” 在类 “Common" 外部不可访问，因为它具有专用标识符
+//     }
+//     set host(url) {
+//         if (!/^https?:\/\//i.test(url)) {
+//             throw new Error('地址错误');
+//         }
+//         this.#host = url;
+//     }
+
+// }
+// let user = new User('yummy');
+// user.host = 'https://www.baidu.com';
+// console.log(user); // User {name: 'yummy', #host: 'https://www.baidu.com', #check: ƒ}
+
+
+// function User(name) {
+//     this.name = name;
+// }
+// function Admin(name) {
+//     User.call(this, name);
+// }
+// Admin.prototype = Object.create(User.prototype);
+// Admin.prototype.show = function () { }
+// let user = new User('Tom');
+// console.dir(user.name); // Tom
+
+
+class User {
     constructor(name) {
         this.name = name;
-        this.#check(name); // Uncaught SyntaxError: Private field '#check' must be declared in an enclosing class
-        // 属性 “#check” 在类 “Common" 外部不可访问，因为它具有专用标识符
     }
-    set host(url) {
-        if (!/^https?:\/\//i.test(url)) {
-            throw new Error('地址错误');
-        }
-        this.#host = url;
-    }
-
 }
-let user = new User('yummy');
-user.host = 'https://www.baidu.com';
-console.log(user); // User {name: 'yummy', #host: 'https://www.baidu.com', #check: ƒ}
+
+class Admin extends User {
+    constructor(name) {
+        super(name);
+    }
+}
+
+let hd = new Admin('Tom');
+console.log(hd.name);

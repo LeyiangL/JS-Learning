@@ -3146,17 +3146,42 @@
 // console.dir(user.name); // Tom
 
 
+// class User {
+//     constructor(name) {
+//         this.name = name;
+//     }
+// }
+
+// class Admin extends User {
+//     constructor(name) {
+//         super(name);
+//     }
+// }
+
+// let hd = new Admin('Tom');
+// console.log(hd.name);
+
+
+// function User() { }
+// User.prototype.show = function () {
+//     console.log('tag');
+// }
+// function Admin() { }
+// Admin.prototype = Object.create(User.prototype);
+// let hd = new Admin();
+// console.log(hd);
+
+
 class User {
+    show() {
+        console.log('tag');
+    }
+}
+class Admin extends User {
     constructor(name) {
+        super();
         this.name = name;
     }
 }
-
-class Admin extends User {
-    constructor(name) {
-        super(name);
-    }
-}
-
 let hd = new Admin('Tom');
-console.log(hd.name);
+console.log(hd);

@@ -3172,9 +3172,55 @@
 // console.log(hd);
 
 
+// class User {
+//     show() {
+//         console.log('tag');
+//     }
+// }
+// class Admin extends User {
+//     constructor(name) {
+//         super();
+//         this.name = name;
+//     }
+// }
+// let hd = new Admin('Tom');
+// console.log(hd);
+
+
+// class User {
+//     show() {
+//         console.log('User.show');
+//     }
+// }
+// class Admin extends User {
+//     show() {
+//         super.show();
+//         console.log('Admin.show');
+//     }
+// }
+// let admin = new Admin('Tom');
+// admin.show();
+
+
+// let user = {
+//     name: 'user.name',
+//     show() {
+//         console.log(this.name);
+//     }
+// }
+// let admin = {
+//     __proto__: user,
+//     name: 'admin.name',
+//     show() {
+//         this.__proto__.show.call(this);
+//     }
+// }
+// admin.show();
+
+
 class User {
     show() {
-        console.log('tag');
+        console.log(this.name);
     }
 }
 class Admin extends User {
@@ -3182,6 +3228,9 @@ class Admin extends User {
         super();
         this.name = name;
     }
+    show() {
+        super.show();
+    }
 }
-let hd = new Admin('Tom');
-console.log(hd);
+let admin = new Admin('Tom');
+admin.show();

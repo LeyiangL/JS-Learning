@@ -3218,19 +3218,43 @@
 // admin.show();
 
 
-class User {
+// class User {
+//     show() {
+//         console.log(this.name);
+//     }
+// }
+// class Admin extends User {
+//     constructor(name) {
+//         super();
+//         this.name = name;
+//     }
+//     show() {
+//         super.show();
+//     }
+// }
+// let admin = new Admin('Tom');
+// admin.show();
+
+
+
+let common = {
+    name: 'common.name',
     show() {
-        console.log(this.name);
+        console.log(this.name, 'common.show'); // admin.name , common.show
     }
 }
-class Admin extends User {
-    constructor(name) {
-        super();
-        this.name = name;
-    }
+let user = {
+    __proto__: common,
+    name: 'user.name',
     show() {
         super.show();
     }
 }
-let admin = new Admin('Tom');
+let admin = {
+    __proto__: user,
+    name: 'admin.name',
+    show() {
+        super.show();
+    }
+}
 admin.show();

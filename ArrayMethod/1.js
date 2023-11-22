@@ -3237,24 +3237,78 @@
 
 
 
-let common = {
-    name: 'common.name',
-    show() {
-        console.log(this.name, 'common.show'); // admin.name , common.show
+// let common = {
+//     name: 'common.name',
+//     show() {
+//         console.log(this.name, 'common.show'); // admin.name , common.show
+//     }
+// }
+// let user = {
+//     __proto__: common,
+//     name: 'user.name',
+//     show() {
+//         super.show();
+//     }
+// }
+// let admin = {
+//     __proto__: user,
+//     name: 'admin.name',
+//     show() {
+//         super.show();
+//     }
+// }
+// admin.show();
+
+
+// function User(name) {
+//     this.name = name;
+// }
+// function Admin(...args) {
+//     // User.apply(this, args);
+//     User.call(this, ...args);
+// }
+// Admin.prototype = Object.create(User.prototype);
+// let admin = new Admin('Tom');
+// console.log(admin); // Admin {name: 'Tom'}
+
+
+// class User {
+//     constructor(name) {
+//         this.name = name;
+//     }
+// }
+// class Admin extends User {
+//     constructor(...args) {
+//         super(...args);
+//     }
+// }
+// let admin = new Admin('Tom');
+// console.log(admin);
+
+
+class Controller {
+    sum() {
+        return this.data;
     }
 }
-let user = {
-    __proto__: common,
-    name: 'user.name',
-    show() {
-        super.show();
+class Lesson extends Controller {
+    constructor(data) {
+        super();
+        this.data = data;
+    }
+    info() {
+        return {
+            totalPrice: super.sum(),
+            data: this.data.reduce((a, c) => a + c.price, 0,),
+        }
     }
 }
-let admin = {
-    __proto__: user,
-    name: 'admin.name',
-    show() {
-        super.show();
-    }
-}
-admin.show();
+let data = [
+    { name: 'js', price: 100 },
+    { name: 'mysql', price: 212 },
+    { name: 'vue.js', price: 98 },
+
+]
+let lesson = new Lesson(data);
+console.log(lesson.info());
+

@@ -3290,6 +3290,10 @@ class Controller {
     sum() {
         return this.data;
     }
+    // 通过关键词返回具体课程
+    getByKey(key) {
+        return this.data.filter(item => item.name.includes(key));
+    }
 }
 class Lesson extends Controller {
     constructor(data) {
@@ -3302,6 +3306,9 @@ class Lesson extends Controller {
             data: this.data.reduce((a, c) => a + c.price, 0,),
         }
     }
+    getByKey(key) {
+        return super.getByKey(key).map(item => item.name);
+    }
 }
 let data = [
     { name: 'js', price: 100 },
@@ -3310,5 +3317,5 @@ let data = [
 
 ]
 let lesson = new Lesson(data);
-console.log(lesson.info());
+console.log(lesson.getByKey('j')); // (2) ['js', 'vue.js']
 

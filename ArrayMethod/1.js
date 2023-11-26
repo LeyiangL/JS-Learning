@@ -3384,9 +3384,49 @@
 // console.log(a.isPrototypeOf(c));
 
 
-class Common { }
-class User extends Common { }
-class Admin extends User { }
-let admin = new Admin();
-console.log(Admin.prototype.isPrototypeOf(admin)); // true
-console.log(Common.prototype.isPrototypeOf(admin)); // true
+// class Common { }
+// class User extends Common { }
+// class Admin extends User { }
+// let admin = new Admin();
+// console.log(Admin.prototype.isPrototypeOf(admin)); // true
+// console.log(Common.prototype.isPrototypeOf(admin)); // true
+
+
+// function Arr(...args) {
+//     args.forEach(item => this.push(item));
+//     this.first = function () {
+//         return this[0];
+//     }
+//     this.max = function () {
+//         return this.sort((a, b) => b - a)[0];
+//     }
+// }
+// Arr.prototype = Object.create(Array.prototype);
+// let arr = new Arr(1, 2, 3, 4, 5, 6);
+// console.log(arr.first()); // 1
+// console.log(arr.max()); // 6
+
+
+// class Arr extends Array {
+//     constructor(...args) {
+//         super(...args);
+//     }
+//     first() {
+//         return this[0]; Z
+//     }
+//     max() {
+//         return this.sort((a, b) => b - a)[0];
+//     }
+//     add(item) {
+//         this.push(item)
+//     }
+//     remove(value) {
+//         let pos = this.findIndex(item => item === value);
+//         this.splice(pos, 1);
+//     }
+// }
+// let arr = new Arr(1, 2, 3, 4, 5, 6);
+// console.log(arr.first()); // 1
+// console.log(arr.max()); // 6
+// arr.remove(3);
+// console.log(arr); // Arr(5) [6, 5, 4, 2, 1]

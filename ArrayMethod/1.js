@@ -3366,9 +3366,27 @@
 // console.log(checkPrototype(admin, Object));
 
 
-class User { }
+// class User { }
+// class Admin extends User { }
+// let admin = new Admin();
+// console.log(admin instanceof Admin); // true
+// console.log(admin instanceof User); // true
+// console.log(admin instanceof Object); // true
+
+
+// let a = {};
+// let b = {
+//     __proto__: a
+// }
+// let c = {
+//     __proto__: b
+// };
+// console.log(a.isPrototypeOf(c));
+
+
+class Common { }
+class User extends Common { }
 class Admin extends User { }
 let admin = new Admin();
-console.log(admin instanceof Admin); // true
-console.log(admin instanceof User); // true
-console.log(admin instanceof Object); // true
+console.log(Admin.prototype.isPrototypeOf(admin)); // true
+console.log(Common.prototype.isPrototypeOf(admin)); // true

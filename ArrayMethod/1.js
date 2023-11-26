@@ -3330,12 +3330,45 @@
 // Admin.show();
 
 
-class User {
-    static site = 'https://www.bilibili.com';
-    static show() {
-        console.log('User.static.show');
-    }
-}
+// class User {
+//     static site = 'https://www.bilibili.com';
+//     static show() {
+//         console.log('User.static.show');
+//     }
+// }
+// class Admin extends User { }
+// console.dir(Admin);
+// Admin.show();
+
+
+// function User() { }
+// function Admin() { }
+// Admin.prototype = Object.create(User.prototype);
+// let admin = new Admin();
+// console.log(admin instanceof Admin); // true
+// console.log(admin instanceof User); // true
+// console.log(admin.__proto__ === Admin.prototype); // true
+// console.log(admin.__proto__.__proto__ === User.prototype); // true
+// console.log(admin.__proto__.__proto__.__proto__ === Object.prototype); // true
+// console.log(admin.__proto__.__proto__.__proto__.__proto__); // null
+
+
+// function User() { }
+// function Admin() { }
+// Admin.prototype = Object.create(User.prototype);
+// let admin = new Admin();
+
+// function checkPrototype(obj, constructor) {
+//     if (!obj.__proto__) return false;
+//     if (obj.__proto__ === constructor.prototype) return true;
+//     return checkPrototype(obj.__proto__, constructor);
+// }
+// console.log(checkPrototype(admin, Object));
+
+
+class User { }
 class Admin extends User { }
-console.dir(Admin);
-Admin.show();
+let admin = new Admin();
+console.log(admin instanceof Admin); // true
+console.log(admin instanceof User); // true
+console.log(admin instanceof Object); // true

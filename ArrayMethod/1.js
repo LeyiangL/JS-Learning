@@ -3286,36 +3286,56 @@
 // console.log(admin);
 
 
-class Controller {
-    sum() {
-        return this.data;
-    }
-    // 通过关键词返回具体课程
-    getByKey(key) {
-        return this.data.filter(item => item.name.includes(key));
+// class Controller {
+//     sum() {
+//         return this.data;
+//     }
+//     // 通过关键词返回具体课程
+//     getByKey(key) {
+//         return this.data.filter(item => item.name.includes(key));
+//     }
+// }
+// class Lesson extends Controller {
+//     constructor(data) {
+//         super();
+//         this.data = data;
+//     }
+//     info() {
+//         return {
+//             totalPrice: super.sum(),
+//             data: this.data.reduce((a, c) => a + c.price, 0,),
+//         }
+//     }
+//     getByKey(key) {
+//         return super.getByKey(key).map(item => item.name);
+//     }
+// }
+// let data = [
+//     { name: 'js', price: 100 },
+//     { name: 'mysql', price: 212 },
+//     { name: 'vue.js', price: 98 },
+
+// ]
+// let lesson = new Lesson(data);
+// console.log(lesson.getByKey('j')); // (2) ['js', 'vue.js']
+
+
+// function User() { }
+// User.site = 'Tom';
+// User.show = function () {
+//     console.log('User.static.method');
+// }
+// function Admin() { }
+// Admin.__proto__ = User;
+// Admin.show();
+
+
+class User {
+    static site = 'https://www.bilibili.com';
+    static show() {
+        console.log('User.static.show');
     }
 }
-class Lesson extends Controller {
-    constructor(data) {
-        super();
-        this.data = data;
-    }
-    info() {
-        return {
-            totalPrice: super.sum(),
-            data: this.data.reduce((a, c) => a + c.price, 0,),
-        }
-    }
-    getByKey(key) {
-        return super.getByKey(key).map(item => item.name);
-    }
-}
-let data = [
-    { name: 'js', price: 100 },
-    { name: 'mysql', price: 212 },
-    { name: 'vue.js', price: 98 },
-
-]
-let lesson = new Lesson(data);
-console.log(lesson.getByKey('j')); // (2) ['js', 'vue.js']
-
+class Admin extends User { }
+console.dir(Admin);
+Admin.show();

@@ -3430,3 +3430,33 @@
 // console.log(arr.max()); // 6
 // arr.remove(3);
 // console.log(arr); // Arr(5) [6, 5, 4, 2, 1]
+
+
+let Tool = {
+    max(key) {
+        return this.data.sort((a, b) => b[key] - a[key])[0];
+    }
+}
+let Arr = {
+    count(key) {
+        return this.data.reduce((t, c) => t + c[key], 0);
+    }
+}
+class Lesson {
+    constructor(lessons) {
+        this.lessons = lessons;
+    }
+    get data() {
+        return this.lessons;
+    }
+}
+let data = [
+    { name: 'js', price: 100, click: 188 },
+    { name: 'mysql', price: 212, click: 20 },
+    { name: 'vue.js', price: 98, click: 3999 },
+];
+Object.assign(Lesson.prototype, Tool, Arr);
+let lesson = new Lesson(data);
+console.log(lesson.count('click'));
+
+

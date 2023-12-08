@@ -3432,31 +3432,107 @@
 // console.log(arr); // Arr(5) [6, 5, 4, 2, 1]
 
 
-let Tool = {
-    max(key) {
-        return this.data.sort((a, b) => b[key] - a[key])[0];
-    }
-}
-let Arr = {
-    count(key) {
-        return this.data.reduce((t, c) => t + c[key], 0);
-    }
-}
-class Lesson {
-    constructor(lessons) {
-        this.lessons = lessons;
-    }
-    get data() {
-        return this.lessons;
-    }
-}
-let data = [
-    { name: 'js', price: 100, click: 188 },
-    { name: 'mysql', price: 212, click: 20 },
-    { name: 'vue.js', price: 98, click: 3999 },
-];
-Object.assign(Lesson.prototype, Tool, Arr);
-let lesson = new Lesson(data);
-console.log(lesson.count('click'));
+// let Tool = {
+//     max(key) {
+//         return this.data.sort((a, b) => b[key] - a[key])[0];
+//     }
+// }
+// let Arr = {
+//     count(key) {
+//         return this.data.reduce((t, c) => t + c[key], 0);
+//     }
+// }
+// class Lesson {
+//     constructor(lessons) {
+//         this.lessons = lessons;
+//     }
+//     get data() {
+//         return this.lessons;
+//     }
+// }
+// let data = [
+//     { name: 'js', price: 100, click: 188 },
+//     { name: 'mysql', price: 212, click: 20 },
+//     { name: 'vue.js', price: 98, click: 3999 },
+// ];
+// Object.assign(Lesson.prototype, Tool, Arr);
+// let lesson = new Lesson(data);
+// console.log(lesson.count('click'));
+
+// var arr = [1, 2, 3, 4, 5, 6]
+// var res = arr.join(', ') // 1,2,3,4,5,6
+// console.log(res)
 
 
+// 死循环指定的时间
+// function delay(duration) {
+//     var start = Date.now();
+//     while (Date.now() - start < duration) { }
+// }
+
+// setTimeout(function () {
+//     console.log(1);
+// }, 0);
+
+// Promise.resolve().then(function () {
+//     console.log(2);;
+// })
+
+// console.log(3);
+
+// 打印结果为 3 2 1
+
+
+// setTimeout(function () {
+//     console.log(1);
+// }, 0);
+
+// function delay(duration) {
+//     var start = Date.now();
+//     while (Date.now() - start < duration) { }
+// }
+
+// delay(3000);
+
+// console.log(2);
+
+// 打印结果为 先等待3秒钟，然后 2 1
+
+
+// function a() {
+//     console.log(1);
+//     Promise.resolve().then(function () {
+//         console.log(2);
+//     });
+// }
+
+// setTimeout(function () {
+//     console.log(3);
+//     Promise.resolve().then(a)
+// }, 0);
+
+// Promise.resolve().then(function () {
+//     console.log(4);
+// });
+
+// console.log(5);
+
+// 打印结果为 5 4 3 1 2
+
+
+function a() {
+    console.log(1);
+    Promise.resolve().then(function () {
+        console.log(2);
+    });
+}
+
+setTimeout(function () {
+    console.log(3);
+}, 0);
+
+Promise.resolve().then(a);
+
+console.log(4);
+
+// 打印结果为 4 1 2 3

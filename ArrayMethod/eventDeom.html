@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <head></head>
+
+    <body>
+        <h1>awesome!</h1>
+        <button>change</button>
+        <script>
+            var h1 = document.querySelector('h1');
+            var btn = document.querySelector('button');
+            // 死循环指定的时间
+            function delay(duration) {
+                var start = Date.now();
+                while (Date.now() - start < duration) { }
+            }
+            btn.onclick = function () {
+                h1.textContent = 'YaHu!';
+                delay(3000);
+            }
+        </script>
+    </body>
+
+</html>

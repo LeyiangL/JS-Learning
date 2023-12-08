@@ -1,0 +1,24 @@
+{
+  "name": "js-learning",
+  "version": "1.0.0",
+  "description": "JS-Learning",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./ArrayMethod/demo.js"
+  },
+  "repository": {
+    "ty pe": "git",
+    "url": "git+https://github.com/LeyiangL/JS-Learning.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LeyiangL/JS-Learning/issues"
+  },
+  "homepage": "https://github.com/LeyiangL/JS-Learning#readme",
+  "dependencies": {
+    "nodemon": "^3.0.2"
+  }
+}

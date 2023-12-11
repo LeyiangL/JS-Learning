@@ -3536,3 +3536,4 @@ Promise.resolve().then(a);
 console.log(4);
 
 // 打印结果为 4 1 2 3
+

@@ -36,4 +36,31 @@
 // }
 
 
+// let promise = new Promise((resolve, reject) => {
+//     resolve('承诺实现');
+// });
+
+// // 控制台打印结果为 Global Then，由此可得出 Then 是异步调用
+// promise.then((res) => {
+//     console.log('Then');
+// }, (error) => {
+//     console.log(error);
+// });
+
+// console.log('Global');
+
+
+// let promise = new Promise((resolve, reject) => {
+//     reject('承诺石沉大海');
+// });
+
+// promise.then((res) => {
+//     console.log(res);
+// }, (error) => {
+//     console.log(error); // 承诺石沉大海
+// });
+// console.log('Global');
+
+
+
 

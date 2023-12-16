@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div data-info='{"name": "张三", "age": 27}'></div>
+    <script type="text/javascript">
+        var oDiv = document.getElementsByTagName('div')[0];
+        var info = oDiv.getAttribute('data-info');
+        var jsonData = JSON.parse(info);
+        console.log(jsonData);
+    </script>
+</body>
+
+</html>

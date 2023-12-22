@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./promiseText/jsonTest.js"
+    "dev": "nodemon ./promiseText/test4.js"
   },
   "nodemonConfig": {
     "watch": [
-      "./promiseText/test1.js"
+      "./promiseText/test4.js"
     ]
   },
   "repository": {

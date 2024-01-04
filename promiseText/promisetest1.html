@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function getImg() {
+            return new Promise((resolve, reject) => {
+                const oImg = new Image();
+                // 处理加载完成事件：在加载完成后，可以执行一些操作
+                oImg.onload = function () {
+                    resolve(oImg);
+                }
+                oImg.src = 'https://cdn.eso.org/images/screen/eso1242a.jpg';
+            });
+        }
+
+        function timeout() {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    reject('图片请求超时');
+                }, 1000); // 1000内未打印出图片，因此控制台显示结果为：图片请求超时
+            });
+        }
+
+        Promise.race([
+            getImg(),
+            timeout()
+        ])
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    </script>
+</body>
+
+</html>

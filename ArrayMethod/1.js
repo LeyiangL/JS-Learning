@@ -3520,20 +3520,174 @@
 // 打印结果为 5 4 3 1 2
 
 
-function a() {
-    console.log(1);
-    Promise.resolve().then(function () {
-        console.log(2);
-    });
-}
+// function a() {
+//     console.log(1);
+//     Promise.resolve().then(function () {
+//         console.log(2);
+//     });
+// }
 
-setTimeout(function () {
-    console.log(3);
-}, 0);
+// setTimeout(function () {
+//     console.log(3);
+// }, 0);
 
-Promise.resolve().then(a);
+// Promise.resolve().then(a);
 
-console.log(4);
+// console.log(4);
 
 // 打印结果为 4 1 2 3
+
+
+// const object1 = {
+//     a: 'somestring',
+//     b: 42,
+//     c: false,
+// };
+
+// // 获取对象所有属性名的数组。
+// console.log(Object.keys(object1)); // [ 'a', 'b', 'c' ]
+// // 获取对象所有属性值的数组。
+// console.log(Object.values(object1)); // [ 'somestring', 42, false ]
+// // 获取对象所有属性的 [key, value] 数组。
+// console.log(Object.entries(object1)); // [ [ 'a', 'somestring' ], [ 'b', 42 ], [ 'c', false ] ]
+
+
+// const object1 = {
+//     a: 'somestring',
+//     b: 42,
+//     c: false,
+// };
+// // 返回对象的字符串格式（/表示形式）
+// console.log(object1.toString()); // [object Object]
+
+
+// const object1 = {
+//     a: 'somestring',
+//     b: 42,
+//     c: false,
+// };
+
+// // 重写对象的 toString 方法
+// object1.toString = function() {
+//     return `Customized Object: { a: ${this.a}, b: ${this.b}, c: ${this.c} }`;
+// };
+
+// // 调用重写后的 toString 方法
+// console.log(object1.toString()); // 输出: Customized Object: { a: somestring, b: 42, c: false }
+
+
+// const str = [1, 2, 3];
+// console.log(str.toString()); // 1,2,3
+
+
+// const obj1 = new Number(12345);
+// console.log(obj1.toString()); // 12345
+
+// const obj2 = new Boolean(true);
+// console.log(obj2.toString()); // true
+
+
+// // 定义一个简单的函数
+// function greet(name) {
+//     return `Hello, ${name}!`;
+// }
+
+// // 调用 toString 方法
+// const toStringResult = greet.toString();
+
+// // 输出函数的源代码字符串
+// console.log(toStringResult);
+// // function greet(name) {
+// //     return `Hello, ${name}!`;
+// // }
+
+
+// const object1 = {
+//     a: 'somestring',
+//     b: 42,
+//     c: false,
+// };
+
+// console.log(object1.valueOf());
+// console.log(object1.valueOf() === object1);
+
+
+// var obj = {
+//     x: 123,
+//     y: 456,
+//     valueOf: function () {
+//         return 123;
+//     }
+// };
+
+// console.log(obj + 1); // 124
+// console.log(obj.valueOf().toString() + 1); // 1231
+
+
+// function func1(a, b, c) {
+//     console.log(arguments); // Arguments(3) [1, 2, 3, callee: ƒ, Symbol(Symbol.iterator): ƒ]
+// }
+
+// func1(1, 2, 3);
+
+
+// // var args = Array.prototype.slice.call(arguments);
+// var args = [].slice.call(arguments);
+
+// // ES2015
+// // const args = Array.from(arguments);
+// const args = [...arguments];
+
+
+// function test(a, b) {
+//     arguments[0] = "abc";
+//     b = 123;
+//     console.log(a, b);        // abc 123
+//     console.log(arguments);   // [Arguments] { '0': 'abc', '1': 123 }
+// }
+
+// test(1, undefined);
+
+// let abc = function test() { }
+// console.log(abc.name); // test
+
+
+// function Product(name, price) {
+//     this.name = name;
+//     this.price = price;
+// }
+
+// function Food(name, price) {
+//     Product.apply(this, [name, price]);
+//     this.category = 'food';
+// }
+
+// console.log(new Food('cheese', 5).name);
+// // Expected output: "cheese"
+
+
+// function test() {
+//     console.log(arguments); // 输出 arguments 对象
+
+//     // 将 arguments 转换为真数组
+//     var newArr = [].slice.call(arguments);
+//     console.log(newArr); // 输出转换后的数组
+// }
+
+// test(23, 5, 6, 2, 233, 5, 6, 7); // (8) [23, 5, 6, 2, 233, 5, 6, 7]
+
+
+// const text = {
+//     x: 42,
+//     getX: function () {
+//         return this.x;
+//     },
+// };
+
+// const unboundGetX = text.getX;
+// console.log(unboundGetX()); // undefined
+
+// const boundGetX = unboundGetX.bind(text);
+// console.log(boundGetX()); // 42
+
 

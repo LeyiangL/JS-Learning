@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./promiseText/test7.js"
+    "dev": "nodemon ./ArrayMethod/1.js"
   },
   "nodemonConfig": {
     "watch": [
-      "./promiseText/test7.js"
+      "./ArrayMethod/1.js"
     ]
   },
   "repository": {
